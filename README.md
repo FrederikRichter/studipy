@@ -14,6 +14,7 @@ pip install dist/....
 # Usage - Example
 ```python
 import studipy
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
