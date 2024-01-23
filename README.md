@@ -1,5 +1,5 @@
 # studipy
-StudIP Python API library using OAuth
+StudIP Python API library using JSONAPI
 
 # WIP
 
