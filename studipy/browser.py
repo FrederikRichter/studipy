@@ -5,7 +5,7 @@ class StudipError(Exception):
     """default Exception if Studip Request fails"""
     pass
 
-def get(url, auth, params={}) -> object:
+def get(url, auth, params=None) -> object:
     """returns json response from api"""
     response = requests.get(url, auth=auth, params=params)
     check_status(status_code=response.status_code, url=url)
