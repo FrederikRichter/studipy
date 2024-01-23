@@ -25,7 +25,7 @@ base_url = os.getenv("STUDIP_BASEURL")
 
 client = studipy.Client(username=username, password=password, base_url=base_url)
 
-cliengt.get_courses()
+client.get_courses()
 ```
 
 <table>
