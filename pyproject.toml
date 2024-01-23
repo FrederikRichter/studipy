@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "studipy"
+version = "0.1.0"
+description = "studip python api using oauth"
+authors = ["Frederik Richter"]
+license = "GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
