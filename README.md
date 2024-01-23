@@ -1,8 +1,6 @@
 # studipy
 StudIP Python API library using JSONAPI
 
-# WIP
-
 # INSTALLATION
 ```
 pip install studipy
@@ -13,4 +11,24 @@ poetry install
 pip install dist/....
 ```
 
-PIPY on its way
+# Usage - Example
+```python
+import studipy
+from dotenv import load_dotenv
+
+load_dotenv()
+
+username = os.getenv("STUDIP_LOGINNAME")
+password = os.getenv("STUDIP_LOGINSECRET")
+base_url = os.getenv("STUDIP_BASEURL")
+
+client = studipy.Client(username=username, password=password, base_url=base_url)
+
+cliengt.get_courses()
+```
+
+<table>
+  <tr>
+    <td><a href="https://www.paypal.me/FrederikRichter/"><img width="256" src="paypal.svg" /><p align="center">Buy me a Coffee!</p></a></td>
+  </tr>
+</table>
