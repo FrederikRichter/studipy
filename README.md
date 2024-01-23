@@ -29,6 +29,6 @@ cliengt.get_courses()
 
 <table>
   <tr>
-    <td><a href="https://www.paypal.me/FrederikRichter/"><img width="256" src="paypal.svg" /><p align="center">Buy me a Coffee!</p></a></td>
+    <td><a href="https://www.paypal.me/FrederikRichter/"><img width="256" src="coffee.svg" /><p align="center">Buy me a Coffee!</p></a></td>
   </tr>
 </table>
