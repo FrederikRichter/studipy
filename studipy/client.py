@@ -68,7 +68,7 @@ class Client:
     def get_messages(self, filter_unread=False) -> object:
         """returns json list of user messages. can filter unread messages"""
         return browser.get(
-            self._api_url + "users/" + self.me + "/inbox",
+            self._api_url + "users/" + self.me["data"]["id"] + "/inbox",
             params={"filter[unread]": str(int(filter_unread))},
             auth=self._auth
         )
