@@ -7,7 +7,7 @@ pip install studipy
 ```
 ## From source
 ```
-poetry install
+poetry build
 pip install dist/....
 ```
 
