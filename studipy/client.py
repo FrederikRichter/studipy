@@ -16,7 +16,7 @@ class Client:
     def get_courses(self) -> object:
         """returns json list of courses the user is in"""
         return browser.get(
-            self._api_url + "users/" + self.me + "/courses/",
+            self._api_url + "users/" + self.me["data"]["id"] + "/courses",
             params={"page[limit]": "-1"},
             auth=self._auth
         )
