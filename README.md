@@ -1,4 +1,4 @@
-[![PyPI Downloads]](https://pypi.org/project/numpy/)
+[![PyPI Downloads](https://pypi.org/project/numpy/)]
 
 # studipy
 StudIP Python API library using JSONAPI
