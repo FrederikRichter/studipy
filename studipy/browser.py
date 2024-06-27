@@ -1,10 +1,6 @@
 import requests
 import json
 
-class StudipError(Exception):
-    """default Exception if Studip Request fails"""
-    pass
-
 def get(url, auth, params=None) -> object:
     """returns json response from api"""
     response = requests.get(url, auth=auth, params=params)
@@ -21,9 +17,8 @@ def check_status(status_code, url):
     """raises error based on status code"""
     match status_code:
         case 401:
-            raise StudipError(f"Unauthorized! tried accessing {url} with status code {status_code}")
+            raise requests.HTTPError(f"Unauthorized! tried accessing {url} with status code {status_code}")
         case 403:
-            raise StudipError(f"Forbidden! tried accessing {url} with status code {status_code}")
+            raise requests.HTTPError(f"Forbidden! tried accessing {url} with status code {status_code}")
         case 404:
-            raise StudipError(f"Not Found! tried accessing {url} with status code {status_code}")
-
+            raise requests.HTTPError(f"Not Found! tried accessing {url} with status code {status_code}")
