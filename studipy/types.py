@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 class User(BaseModel):
@@ -8,7 +8,7 @@ class User(BaseModel):
     User_id: str
 
 class Course(BaseModel):
-    Title: str
+    Title: Optional[str]
     Subtitle: Optional[str]
     Description: Optional[str]
     Location: Optional[str]
@@ -22,14 +22,22 @@ class Message(BaseModel):
     Creation_Date: str
 
 class File(BaseModel):
-    Name: str
+    Name: Optional[str]
     File_id: str
-    Timestamp: int
-    Creator: User
+    Creation_Date: Optional[str]
+    Change_Date: Optional[str]
+    Description: Optional[str]
+    Owner_Name: Optional[str]
+    Owner_id: Optional[str]
+
+class File_Metadata(BaseModel):
+    Name: Optional[str]
+    Description: Optional[str]
+    License: str = Field(default="FREE_LICENSE")
 
 class Folder(BaseModel):
-    Name: str
+    Name: Optional[str]
     Folder_id: str
-    Timestamp: int
-    Creator: str
-    File_List: list[File]
+    Creation_Date: Optional[str]
+    Change_Date: Optional[str]
+    Description: Optional[str]
