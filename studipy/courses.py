@@ -1,6 +1,6 @@
 import studipy.browser as browser
 from studipy.types import Course
-
+from studipy.helper import safe_get
 class Courses:
     def __init__(self, client):
         self._client = client
@@ -18,11 +18,11 @@ class Courses:
         course_list = []
         for c in response["data"]:
             course = Course (
-                    Course_id = c["id"],
-                    Title = c["attributes"]["title"],
-                    Subtitle = c["attributes"]["subtitle"],
-                    Description = c["attributes"]["description"],
-                    Location = c["attributes"]["location"]
+                    Course_id=c["id"],
+                    Title=safe_get(c, "attributes", "title"),
+                    Subtitle=safe_get(c, "attributes", "subtitle"),
+                    Description=safe_get(c, "attributes", "description"),
+                    Location=safe_get(c, "attributes", "location"),
                     )
             course_list.append(course)
         return course_list

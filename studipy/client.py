@@ -1,6 +1,7 @@
 import studipy.browser as browser
 from studipy.courses import Courses
 from studipy.messages import Messages
+from studipy.file_handler import File_Handler
 
 from studipy.types import User
 
@@ -23,32 +24,7 @@ class Client:
                 )
         self.Courses = Courses(client=self)
         self.Messages = Messages(client=self)
-    # def get_course_folders(self, course_id) -> object:
-    #     """returns json list of folders inside a specific course, needs course id"""
-    #     return browser.get(
-    #         self._api_url + "courses/" + course_id + "/folders",
-    #         auth=self._auth
-    #     )
-    #
-    # def get_course_files(self, course_id) -> object:
-    #     """returns json list of file refs in a specific course, needs course id"""
-    #     return browser.get(
-    #         self._api_url + "courses/" + course_id + "/file-refs",
-    #         auth=self._auth
-    #     )
-    #
-    # def get_subfolders(self, folder_id) -> object:
-    #     """returns json list of folders inside a specific folder, needs folder id"""
-    #     return browser.get(
-    #         self._api_url + "folders/" + folder_id + "/folders",
-    #         auth=self._auth
-    #     )
-    #
-    # def get_folder_files(self, folder_id) -> object:
-    #     return browser.get(
-    #         self._api_url + "folders/" + folder_id + "/file-refs",
-    #         auth=self._auth
-    #     )
+        self.File_Handler = File_Handler(client=self)
     #
     # def get_users(self, limit=30) -> object:
     #     """returns json list of userdata
@@ -57,14 +33,6 @@ class Client:
     #     """
     #     return browser.get(
     #         self._api_url + "users", params={"page[limit]": str(limit)},
-    #         auth=self._auth
-    #     )
-    #
-    # def get_messages(self, filter_unread=False) -> object:
-    #     """returns json list of user messages. can filter unread messages"""
-    #     return browser.get(
-    #         self._api_url + "users/" + self.me["data"]["id"] + "/inbox",
-    #         params={"filter[unread]": str(int(filter_unread))},
     #         auth=self._auth
     #     )
     #
