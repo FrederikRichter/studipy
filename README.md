@@ -53,6 +53,8 @@ for c in courses:
 - [ ] View Calendar
 - [ ] Download Calendar ics (rewrite)
 - [ ] Edit Calendar
+- [ ] Write Documentation
+- [ ] Extend Examples
 
 <table>
   <tr>
