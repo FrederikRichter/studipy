@@ -22,8 +22,7 @@ def run_tests():
     print("courses test passed")
     
     client.Messages.get_messages()
-    print("messages test past")
-
+    print("messages test passed")
 
     users = client.Users.get_users(limit=20)
     print("users test passed")
