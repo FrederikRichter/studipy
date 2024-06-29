@@ -72,3 +72,15 @@ class Messages:
                 )
 
         return response
+
+        
+    def delete_message(self, message: Optional[Message] = None, message_id = None, expected_status_code=204) -> requests.Response:
+        """returns bytes of file content, needs specific file id"""
+        if message:
+            message_id = message.message_id
+
+        response = browser.delete(
+                url=self._api_url + "messages/" + message_id, auth=self._auth, expected_status_code=expected_status_code
+                )
+        return response
+
