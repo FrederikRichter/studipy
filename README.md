@@ -8,6 +8,7 @@ StudIP Python API library using JSONAPI
 ```
 pip install studipy
 ```
+
 ## From source
 ```
 poetry build
@@ -28,7 +29,9 @@ base_url = os.getenv("STUDIP_BASEURL")
 
 client = studipy.Client(username=username, password=password, base_url=base_url)
 
-client.get_courses()
+courses = client.Courses.get_courses()
+for c in courses:
+  print(c.Title)
 ```
 
 <table>
