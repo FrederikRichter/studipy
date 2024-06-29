@@ -10,9 +10,9 @@ def get_licenses(client) -> list[License]:
         licenses = []
         for l in response["data"]:
             _license = License(
-                        License_id = l["id"],
-                        Name = safe_get(l, "attributes", "name"),
-                        Description = safe_get(l, "attributes", "description")
+                        license_id = l["id"],
+                        name = safe_get(l, "attributes", "name"),
+                        description = safe_get(l, "attributes", "description")
                     )
             licenses.append(_license)
         return licenses

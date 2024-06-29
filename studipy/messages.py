@@ -22,11 +22,11 @@ class Messages:
         message_list = []
         for m in resp["data"]:
             message = Message(
-                    Message_id=m["id"],
-                    Title=m["attributes"].get("subject", None),
-                    Sender_id=m["relationships"].get("sender", {}).get("data", {}).get("id", None),
-                    Body=m["attributes"].get("message", None),
-                    Creation_Date=m["attributes"]["mkdate"],
+                    message_id=m["id"],
+                    subject=m["attributes"].get("subject", None),
+                    sender_id=m["relationships"].get("sender", {}).get("data", {}).get("id", None),
+                    body=m["attributes"].get("message", None),
+                    creation_date=m["attributes"]["mkdate"],
                     )
             message_list.append(message)
         return message_list
@@ -35,7 +35,7 @@ class Messages:
     def send_message(self, message: Message, recipients: Optional[list[User]] = None, recipient_ids: Optional[list[str]] = None, priority: Optional[str] = "normal") -> requests.Response:
         """returns bytes of file content, needs specific file id"""
         if recipients:
-            recipient_ids = [r.User_id for r in recipients]
+            recipient_ids = [r.user_id for r in recipients]
 
         headers = {
                 'Content-Type': 'application/vnd.api+json',
@@ -52,8 +52,8 @@ class Messages:
                 "data": {
                     "type": "messages",
                     "attributes": {
-                        "subject": message.Title,
-                        "message": message.Body,
+                        "subject": message.subject,
+                        "message": message.body,
                         "priority": priority
                         },
                     "relationships": {

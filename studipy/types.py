@@ -2,47 +2,47 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 class User(BaseModel):
-    Name: Optional[str]
-    Username: Optional[str]
-    E_Mail: Optional[str]
-    User_id: str
+    name: Optional[str]
+    username: Optional[str]
+    email: Optional[str]
+    user_id: str
 
 class Course(BaseModel):
-    Title: Optional[str]
-    Subtitle: Optional[str]
-    Description: Optional[str]
-    Location: Optional[str]
-    Course_id: str
+    title: Optional[str]
+    subtitle: Optional[str]
+    description: Optional[str]
+    location: Optional[str]
+    course_id: str
 
 class Message(BaseModel):
-    Title: str
-    Message_id: Optional[str]
-    Sender_id: Optional[str]
-    Body: Optional[str]
-    Creation_Date: Optional[str]
+    subject: str
+    message_id: Optional[str]
+    sender_id: Optional[str]
+    body: Optional[str]
+    creation_date: Optional[str]
 
 class License(BaseModel):
-    License_id: str
-    Name: Optional[str]
-    Description: Optional[str]
+    license_id: str
+    name: Optional[str]
+    description: Optional[str]
 
 class File(BaseModel):
-    Name: Optional[str]
-    File_id: str
-    Creation_Date: Optional[str]
-    Change_Date: Optional[str]
-    Description: Optional[str]
-    Owner_Name: Optional[str]
-    Owner_id: Optional[str]
+    name: Optional[str]
+    file_id: str
+    creation_date: Optional[str]
+    change_date: Optional[str]
+    description: Optional[str]
+    owner_name: Optional[str]
+    owner_id: Optional[str]
 
 class File_Metadata(BaseModel):
-    Name: Optional[str]
-    Description: Optional[str]
-    License: License
+    name: Optional[str]
+    description: Optional[str]
+    license: License
 
 class Folder(BaseModel):
-    Name: Optional[str]
-    Folder_id: str
-    Creation_Date: Optional[str]
-    Change_Date: Optional[str]
-    Description: Optional[str]
+    name: Optional[str]
+    folder_id: str
+    creation_date: Optional[str]
+    change_date: Optional[str]
+    description: Optional[str]

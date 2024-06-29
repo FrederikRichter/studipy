@@ -2,7 +2,7 @@ import requests
 import json
 
 def get(url, auth, params=None, expected_status_code=200) -> dict:
-    """Returns JSON response from API."""
+    """Returns JSON response from API"""
     response = requests.get(
         url=url,
         auth=auth,
@@ -16,7 +16,7 @@ def get(url, auth, params=None, expected_status_code=200) -> dict:
     return json.loads(response.text)
 
 def patch(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
-    """Patches over API."""
+    """Patches over API"""
     response = requests.patch(
         url=url,
         auth=auth,
@@ -50,7 +50,7 @@ def delete(url, auth, params=None, data=None, headers=None, expected_status_code
 
 
 def post(url, auth, params=None, data=None, headers=None, expected_status_code=201) -> requests.Response:
-    """Posts over API."""
+    """Posts over API"""
     response = requests.post(
         url=url,
         auth=auth,
@@ -67,7 +67,7 @@ def post(url, auth, params=None, data=None, headers=None, expected_status_code=2
     return response
 
 def download(url, auth, expected_status_code=200) -> bytes:
-    """Returns binary response from API."""
+    """Returns binary response from API"""
     response = requests.get(
         url=url,
         auth=auth,
@@ -81,7 +81,7 @@ def download(url, auth, expected_status_code=200) -> bytes:
     return response.content
 
 def upload(url, content_dict: dict, auth, expected_status_code=200) -> requests.Response:
-    """Uploads file to URL."""
+    """Uploads content to API"""
     response = requests.post(
         url=url,
         auth=auth,
