@@ -29,8 +29,10 @@ username = os.getenv("STUDIP_LOGINNAME")
 password = os.getenv("STUDIP_LOGINSECRET")
 base_url = os.getenv("STUDIP_BASEURL")
 
+# create a new client object
 client = studipy.Client(username=username, password=password, base_url=base_url)
 
+# get a list of Course objects (specified in types.py)
 courses = client.Courses.get_courses()
 for c in courses:
         print(c.Title)
