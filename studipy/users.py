@@ -18,10 +18,10 @@ class Users:
         users_list = []
         for u in response["data"]:
             user = User (
-                    User_id=u["id"],
-                    Username=safe_get(u, "attributes", "username"),
-                    E_Mail=safe_get(u, "attributes", "email"),
-                    Name=safe_get(u, "attributes", "formatted-name"),
+                    user_id=u["id"],
+                    username=safe_get(u, "attributes", "username"),
+                    email=safe_get(u, "attributes", "email"),
+                    name=safe_get(u, "attributes", "formatted-name"),
                     )
             users_list.append(user)
         return users_list

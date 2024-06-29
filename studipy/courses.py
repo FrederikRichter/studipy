@@ -11,18 +11,18 @@ class Courses:
     def get_courses(self) -> list[Course]:
         """returns json list of courses the user is in"""
         response = browser.get(
-            self._api_url + "users/" + self.me.User_id + "/courses",
+            self._api_url + "users/" + self.me.user_id + "/courses",
             params={"page[limit]": "-1"},
             auth=self._auth
         )
         course_list = []
         for c in response["data"]:
             course = Course (
-                    Course_id=c["id"],
-                    Title=safe_get(c, "attributes", "title"),
-                    Subtitle=safe_get(c, "attributes", "subtitle"),
-                    Description=safe_get(c, "attributes", "description"),
-                    Location=safe_get(c, "attributes", "location"),
+                    course_id=c["id"],
+                    title=safe_get(c, "attributes", "title"),
+                    subtitle=safe_get(c, "attributes", "subtitle"),
+                    description=safe_get(c, "attributes", "description"),
+                    location=safe_get(c, "attributes", "location"),
                     )
             course_list.append(course)
         return course_list
