@@ -13,7 +13,7 @@ def get(url, auth, params=None, expected_status_code=200) -> dict:
         url=url,
         expected=expected_status_code
     )
-    return json.loads(response.text)
+    return response.json()
 
 def patch(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
     """Patches over API"""
