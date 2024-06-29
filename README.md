@@ -6,7 +6,7 @@ StudIP Python API library using JSONAPI
 
 # INSTALLATION
 ```
-pip install studipy
+pip install --upgrade studipy
 ```
 
 ## From source
