@@ -14,7 +14,7 @@ class Messages:
     def get_messages(self, filter_unread: Optional[bool] = False, limit: Optional[int] = 100) -> list[Message]:
         """returns json list of user messages. can filter unread messages"""
         resp =  browser.get(
-            self._api_url + "users/" + self.me.User_id + "/inbox",
+            self._api_url + "users/" + self.me.user_id + "/inbox",
             params={"filter[unread]": str(int(filter_unread)), "page[limit]": str(limit)},
             auth=self._auth
         )
