@@ -51,7 +51,7 @@ for c in courses:
 - [x] Change File Metadata
 - [x] Download Files
 - [x] Mark files read
-- [ ] Delete Messages
+- [x] Delete Messages
 - [ ] Plugin Support
 - [ ] Mark Messages Read/Unread
 - [ ] View Calendar
