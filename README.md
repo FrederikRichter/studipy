@@ -2,7 +2,9 @@
 https://pypi.org/project/studipy/)
 
 # studipy
-StudIP Python API library using JSONAPI
+StudIP Python API wrapper using StudIPs JSONAPI
+
+Easy to use and strongly typed
 
 # INSTALLATION
 ```
