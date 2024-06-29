@@ -31,7 +31,7 @@ client = studipy.Client(username=username, password=password, base_url=base_url)
 
 courses = client.Courses.get_courses()
 for c in courses:
-  print(c.Title)
+    print(c.Title)
 ```
 
 <table>
