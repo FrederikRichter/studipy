@@ -24,6 +24,7 @@ def run_tests():
     client.Messages.get_messages()
     print("messages test past")
 
+
     users = client.Users.get_users(limit=20)
     print("users test passed")
 
