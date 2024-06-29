@@ -2,6 +2,8 @@ import studipy.browser as browser
 from studipy.courses import Courses
 from studipy.messages import Messages
 from studipy.file_handler import File_Handler
+from studipy.constants import Constants
+from studipy.users import Users
 
 from studipy.types import User
 
@@ -25,20 +27,5 @@ class Client:
         self.Courses = Courses(client=self)
         self.Messages = Messages(client=self)
         self.File_Handler = File_Handler(client=self)
-    #
-    # def get_users(self, limit=30) -> object:
-    #     """returns json list of userdata
-    #     Keyword arguments:
-    #     limit -- the max amount of users listed. limit of -1 lists all
-    #     """
-    #     return browser.get(
-    #         self._api_url + "users", params={"page[limit]": str(limit)},
-    #         auth=self._auth
-    #     )
-    #
-    # def download_file(self, file_id) -> bytes:
-    #     """returns bytes of file content, needs specific file id"""
-    #     return browser.download(
-    #         self._api_url + "file-refs/" + file_id + "/content", auth=self._auth
-    #     )
-
+        self.Constants = Constants(client=self)
+        self.Users = Users(client=self)

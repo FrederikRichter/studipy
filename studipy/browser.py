@@ -1,7 +1,7 @@
 import requests
 import json
 
-def get(url, auth, params=None, expected_status_code=200) -> object:
+def get(url, auth, params=None, expected_status_code=200) -> dict:
     """Returns JSON response from API."""
     response = requests.get(
         url=url,
@@ -15,7 +15,7 @@ def get(url, auth, params=None, expected_status_code=200) -> object:
     )
     return json.loads(response.text)
 
-def patch(url, auth, params=None, json=None, data=None, headers=None, expected_status_code=200):
+def patch(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
     """Patches over API."""
     response = requests.patch(
         url=url,
@@ -23,8 +23,42 @@ def patch(url, auth, params=None, json=None, data=None, headers=None, expected_s
         params=params,
         data=data,
         headers=headers,
-        json=json
     )
+    check_status(
+        status_code=response.status_code,
+        url=url,
+        expected=expected_status_code
+    )
+    return response
+
+
+def delete(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
+    """deletes over API."""
+    response = requests.delete(
+        url=url,
+        auth=auth,
+        params=params,
+        data=data,
+        headers=headers,
+    )
+    check_status(
+        status_code=response.status_code,
+        url=url,
+        expected=expected_status_code
+    )
+    return response
+
+
+def post(url, auth, params=None, data=None, headers=None, expected_status_code=201) -> requests.Response:
+    """Posts over API."""
+    response = requests.post(
+        url=url,
+        auth=auth,
+        data=data,
+        params=params,
+        headers=headers,
+    )
+
     check_status(
         status_code=response.status_code,
         url=url,
@@ -46,7 +80,7 @@ def download(url, auth, expected_status_code=200) -> bytes:
     )
     return response.content
 
-def upload(url, content_dict: dict, auth, expected_status_code=200):
+def upload(url, content_dict: dict, auth, expected_status_code=200) -> requests.Response:
     """Uploads file to URL."""
     response = requests.post(
         url=url,

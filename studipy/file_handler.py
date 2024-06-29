@@ -2,6 +2,7 @@ import studipy.browser as browser
 from studipy.types import Folder, File, Course, File_Metadata
 from studipy.helper import safe_get
 from typing import Optional
+import requests
 
 class File_Handler:
     def __init__(self, client):
@@ -37,15 +38,19 @@ class File_Handler:
             folders_list.append(folder)
         return folders_list
     
-    def get_files(self, course: Optional[Course] = None, folder: Optional[Folder] = None) -> list[File]:
-        if course:
+    def get_files(self, course: Optional[Course] = None, folder: Optional[Folder] = None, folder_id: Optional[str] = None, course_id: Optional[str] = None) -> list[File]:
+        if course or course_id:
+            if course:
+                course_id = course.Course_id
             resp = browser.get(
-                    self._api_url + "courses/" + course.Course_id + "/file-refs",
+                    self._api_url + "courses/" + course_id + "/file-refs",
                     auth=self._auth
                     )
-        elif folder:
+        elif folder or folder_id:
+            if folder:
+                folder_id = folder.Folder_id
             resp = browser.get(
-                    self._api_url + "folders/" + folder.Folder_id + "/file-refs",
+                    self._api_url + "folders/" + folder_id + "/file-refs",
                     auth=self._auth
                     )
         else:
@@ -65,13 +70,37 @@ class File_Handler:
             files_list.append(file)
         return files_list
 
-    def download_file(self, file: File) -> bytes:
+    def download_file(self, file: Optional[File] = None, file_id = None) -> bytes:
         """returns bytes of file content, needs specific file id"""
+        if file:
+            file_id = File.File_id
+
         return browser.download(
-                self._api_url + "file-refs/" + File.File_id + "/content", auth=self._auth
+                url = self._api_url + "file-refs/" + file_id + "/content", auth=self._auth
                 )
 
-    def change_metadata(self, metadata: File_Metadata, file: Optional[File] = None, file_id = None):
+    
+    def read_file(self, file: Optional[File] = None, file_id = None) -> dict:
+        """returns bytes of file content, needs specific file id"""
+        if file:
+            file_id = file.File_id
+
+        response = browser.get(
+                url=self._api_url + "file-refs/" + file_id, auth=self._auth
+                )
+        return response
+        
+    def delete_file(self, file: Optional[File] = None, file_id = None, expected_status_code=204) -> requests.Response:
+        """returns bytes of file content, needs specific file id"""
+        if file:
+            file_id = file.File_id
+
+        response = browser.delete(
+                url=self._api_url + "file-refs/" + file_id, auth=self._auth
+                )
+        return response
+    
+    def change_metadata(self, metadata: File_Metadata, file: Optional[File] = None, file_id: Optional[str] = None):
         if file:
             file_id = File.File_id
 
@@ -105,19 +134,22 @@ class File_Handler:
 
         return response
 
-    def upload_file(self, folder: Folder, file_binary: bytes, metadata: Optional[File_Metadata] = None):
-        """uploads file with metadato to folder"""
+    def upload_file(self,  file_binary: bytes, folder: Optional[Folder] = None, folder_id: Optional[str] = None, metadata: Optional[File_Metadata] = None) -> requests.Response:
+        """uploads file with metadata to folder"""
+        
+        if folder:
+            folder_id = folder.Folder_id
 
         file_dict = {'file': file_binary}
 
         response = browser.upload(
-                url = self._api_url + "folders/" + folder.Folder_id + "/file-refs",
+                url = self._api_url + "folders/" + folder_id + "/file-refs",
                 content_dict = file_dict,
                 auth = self._auth,
                 expected_status_code = 201
                 )
 
-        file_id = response.headers.get("Location").split("/")[-1]
+        file_id = response.headers["Location"].split("/")[-1]
 
         if metadata:
             # change metadata of file in second step
