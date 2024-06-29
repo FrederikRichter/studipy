@@ -1,5 +1,5 @@
 import studipy
-from studipy.types import File_Metadata
+from studipy.types import File_Metadata, Message
 import os
 from dotenv import load_dotenv
 
@@ -22,6 +22,16 @@ def run_tests():
     print("courses test passed")
     
     client.Messages.get_messages()
+    _test_message = Message (
+                subject="test subject",
+                body="test body",
+                creation_date=None,
+                sender_id=None,
+                message_id=None
+            )
+    _resp = client.Messages.send_message(message=_test_message, recipient_ids=[client.me.user_id])
+    _test_message_id = _resp.json()["data"]["id"] 
+    client.Messages.delete_message(message_id=_test_message_id)
     print("messages test passed")
 
     users = client.Users.get_users(limit=20)
