@@ -34,6 +34,26 @@ for c in courses:
         print(c.Title)
 ```
 
+# Checklist
+- [x] Auth
+- [x] Get Users
+- [x] Get Messages
+- [x] Send Messages
+- [x] Get Course Folders
+- [x] Get Subfolders
+- [x] Get Files in Folder
+- [x] Upload Files
+- [x] Delete Files
+- [x] Change File Metadata
+- [x] Download Files
+- [x] Mark files read
+- [ ] Delete Messages
+- [ ] Plugin Support
+- [ ] Mark Messages Read/Unread
+- [ ] View Calendar
+- [ ] Download Calendar ics (rewrite)
+- [ ] Edit Calendar
+
 <table>
   <tr>
     <td><a href="https://www.paypal.me/FrederikRichter/"><img width="256" src="coffee.png" /><p align="center">Buy me a Coffee!</p></a></td>
