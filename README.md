@@ -1,7 +1,7 @@
 [![PyPI Downloads](https://img.shields.io/pypi/dm/studipy.svg?label=PyPI%20downloads)](
 https://pypi.org/project/studipy/)
 
-# studipy
+# studipy - StudIP python API
 StudIP Python API wrapper using StudIPs JSONAPI
 
 Easy to use and strongly typed
