@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "studipy"
-version = "0.2.2"
+version = "0.2.3"
 description = "studip python api using JSONAPI"
 authors = ["Frederik Richter"]
 license = "GPLv3"
