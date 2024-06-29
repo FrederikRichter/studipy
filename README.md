@@ -35,7 +35,7 @@ client = studipy.Client(username=username, password=password, base_url=base_url)
 # get a list of Course objects (specified in types.py)
 courses = client.Courses.get_courses()
 for c in courses:
-        print(c.Title)
+        print(c.title)
 ```
 
 # Checklist
