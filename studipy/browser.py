@@ -15,13 +15,13 @@ def get(url, auth, params=None, expected_status_code=200) -> dict:
     )
     return response.json()
 
-def patch(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
+def patch(url, auth, params=None, json=None, headers={"Content-Type:": "application/vnd.api+json"}, expected_status_code=200) -> requests.Response:
     """Patches over API"""
     response = requests.patch(
         url=url,
         auth=auth,
         params=params,
-        data=data,
+        json=json,
         headers=headers,
     )
     check_status(

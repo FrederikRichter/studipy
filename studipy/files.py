@@ -110,10 +110,6 @@ class Files:
         if file:
             file_id = file.file_id
 
-        headers = {
-   'Content-Type': 'application/vnd.api+json',
-                }
-
         payload = {
                 "data": {
                     "type": "file-refs",
@@ -133,9 +129,8 @@ class Files:
 
         response = browser.patch(
                 url = self._api_url + "file-refs/" + file_id,
-                headers = headers,
                 auth = self._auth,
-                data = json.dumps(payload)
+                json = payload
                 )
 
         return response

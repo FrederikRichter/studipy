@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
 
 class User(BaseModel):
@@ -6,6 +6,14 @@ class User(BaseModel):
     username: Optional[str]
     email: Optional[str]
     user_id: str
+
+class Membership(BaseModel):
+    user_id: Optional[str]
+    membership_id: Optional[str]
+    permission: Optional[str]
+    group: Optional[int]
+    label: Optional[str]
+    visible: Optional[str] # yes/no
 
 class Course(BaseModel):
     title: Optional[str]
