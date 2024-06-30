@@ -1,4 +1,5 @@
 import studipy.browser as browser
+from typing import Optional
 from studipy.types import Course
 from studipy.helper import safe_get
 class Courses:
@@ -8,11 +9,11 @@ class Courses:
         self._api_url = client._api_url
         self.me = client.me
 
-    def get_courses(self) -> list[Course]:
+    def get_courses(self, limit: Optional[int] = 1000) -> list[Course]:
         """returns json list of courses the user is in"""
         response = browser.get(
             self._api_url + "users/" + self.me.user_id + "/courses",
-            params={"page[limit]": "-1"},
+            params={"page[limit]": str(limit)},
             auth=self._auth
         )
         course_list = []
