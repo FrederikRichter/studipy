@@ -16,12 +16,15 @@ client = studipy.Client(username=username, password=password, base_url=base_url)
 
 def run_tests():
     LICENSES = client.Constants.LICENSES
+    LICENSES[0].license_id
     print("constants tests passed")
 
     courses = client.Courses.get_courses()
+    courses[0].course_id
     print("courses test passed")
     
-    client.Messages.get_messages()
+    messages = client.Messages.get_messages()
+    messages[0].message_id
     _test_message = Message (
                 subject="test subject",
                 body="test body",
@@ -35,10 +38,13 @@ def run_tests():
     print("messages test passed")
 
     users = client.Users.get_users(limit=20)
+    users[0].user_id
     print("users test passed")
 
     folders = client.Files.get_folders(course=courses[0])
+    folders[0].folder_id
     sub_folders = client.Files.get_folders(folder=folders[0])
+    sub_folders[0].folder_id
     files = client.Files.get_files(folder=sub_folders[0])
     
     client.Files.read_file(file=files[0])
