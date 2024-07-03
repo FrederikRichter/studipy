@@ -74,7 +74,7 @@ for c in courses:
 - [ ] Edit Calendar
 
 ## Plugins
-- [ ] Plugin Support
+You will have to implement custom plugins yourself. They might have registered JSONAPI notes, good luck
 
 ## Documentation
 - [ ] Write Documentation
