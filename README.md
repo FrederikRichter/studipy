@@ -41,10 +41,13 @@ for c in courses:
 # Roadmap
 
 ## Authentication
-- [x] Auth
+- [x] Basic (Username, Password)
+- [ ] Oauth
 
 ## Users
 - [x] Get Users
+- [ ] Get Self
+- [ ] Search for Users
 
 ## Messages
 - [x] Get Messages
