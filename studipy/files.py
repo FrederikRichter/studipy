@@ -106,32 +106,61 @@ class Files:
                 )
         return response
     
-    def change_metadata(self, metadata: File_Metadata, file: Optional[File] = None, file_id: Optional[str] = None):
+    def change_metadata(self, metadata: Metadata, file: Optional[File] = None, file_id: Optional[str] = None, folder: Optional[Folder] =None, folder_id: Optional[str] = None):
         if file:
             file_id = file.file_id
+        
+        if folder:
+            folder_id = folder.folder_id
 
-        payload = {
-                "data": {
-                    "type": "file-refs",
-                    "id": file_id,
-                    "attributes": {
-                        "name": metadata.name,
-                        "description": metadata.description
-                        },
-                    'relationships': {
-                        'terms-of-use': {
-                            'data': {
-                                'type': 'terms-of-use',
-                                'id': metadata.license
+        if file_id:
+            payload = {
+                    "data": {
+                        "type": "file-refs",
+                        "id": file_id,
+                        "attributes": {
+                            "name": metadata.name,
+                            "description": metadata.description
+                            },
+                        'relationships': {
+                            'terms-of-use': {
+                                'data': {
+                                    'type': 'terms-of-use',
+                                    'id': metadata.license
+                                    }
                                 }
-                            }
-                        }}}
+                            }}}
 
-        response = browser.patch(
-                url = self._api_url + "file-refs/" + file_id,
-                auth = self._auth,
-                json = payload
-                )
+            response = browser.patch(
+                    url = self._api_url + "file-refs/" + file_id,
+                    auth = self._auth,
+                    json = payload
+                    )
+        elif folder_id:
+            payload = {
+                    "data": {
+                        "type": "folder",
+                        "id": folder_id,
+                        "attributes": {
+                            "name": metadata.name,
+                            "description": metadata.description
+                            },
+                        'relationships': {
+                            'terms-of-use': {
+                                'data': {
+                                    'type': 'terms-of-use',
+                                    'id': metadata.license
+                                    }
+                                }
+                            }}}
+
+            response = browser.patch(
+                    url = self._api_url + "folders/" + folder_id,
+                    auth = self._auth,
+                    json = payload
+                    )
+        else:
+            raise KeyError("neither folder/id nor file/id for change metadata provided")
 
         return response
 
@@ -178,3 +207,6 @@ class Files:
 
         else:
             return file_id
+
+
+    def move_folder(self)

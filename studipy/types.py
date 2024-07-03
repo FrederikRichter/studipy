@@ -43,7 +43,7 @@ class File(BaseModel):
     owner_name: Optional[str]
     owner_id: Optional[str]
 
-class File_Metadata(BaseModel):
+class Metadata(BaseModel):
     name: Optional[str]
     description: Optional[str]
     license: License

@@ -1,5 +1,5 @@
 import studipy
-from studipy.types import File_Metadata, Message
+from studipy.types import Metadata, Message
 import os
 from dotenv import load_dotenv
 
@@ -54,7 +54,7 @@ def run_tests():
     _private_folder = "0d3f60fa710b7b9d23638b46b83de307"
     _test_file = open("testing.py", "rb")
     _test_license = LICENSES[0]
-    _test_Metadata = File_Metadata(
+    _test_metadata = Metadata(
                 name="Testing",
                 license=_test_license,
                 description="Test description"
@@ -62,6 +62,7 @@ def run_tests():
     _test_file_id = client.Files.upload_file(folder_id=_private_folder, file_binary=_test_file)
     _test_update_file = open("coffee.png", "rb")
     client.Files.change_file_content(file_id=_test_file_id, file_binary=_test_update_file)
+    client.Files.change_metadata(file_id=_test_file_id, metadata=_test_metadata)
     client.Files.delete_file(file_id=_test_file_id)
     print("files test passed")
 

@@ -62,7 +62,7 @@ for c in courses:
 - [x] Upload Files
 - [x] Delete Files
 - [x] Change File Metadata
-- [ ] Change File Content
+- [x] Change File Content
 - [x] Download Files
 - [x] Mark files read
 - [ ] Move Folders/Files
