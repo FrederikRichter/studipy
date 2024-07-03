@@ -60,6 +60,8 @@ def run_tests():
                 description="Test description"
             )
     _test_file_id = client.Files.upload_file(folder_id=_private_folder, file_binary=_test_file)
+    _test_update_file = open("coffee.png", "rb")
+    client.Files.change_file_content(file_id=_test_file_id, file_binary=_test_update_file)
     client.Files.delete_file(file_id=_test_file_id)
     print("files test passed")
 

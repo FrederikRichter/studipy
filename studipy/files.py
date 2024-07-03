@@ -135,6 +135,25 @@ class Files:
 
         return response
 
+
+    def change_file_content(self,  file_binary: bytes, file: Optional[File] = None, file_id: Optional[str] = None) -> requests.Response:
+        """uploads file with metadata to folder"""
+        
+        if file:
+            file_id = file.file_id
+
+        file_dict = {'file': file_binary}
+
+        response = browser.upload(
+                url = self._api_url + "file-refs/" + file_id + "/content",
+                content_dict = file_dict,
+                auth = self._auth,
+                expected_status_code = 201
+                )
+
+        return response
+
+
     def upload_file(self,  file_binary: bytes, folder: Optional[Folder] = None, folder_id: Optional[str] = None, metadata: Optional[File_Metadata] = None) -> str:
         """uploads file with metadata to folder"""
         
@@ -159,4 +178,3 @@ class Files:
 
         else:
             return file_id
-
