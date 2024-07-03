@@ -39,10 +39,20 @@ for c in courses:
 ```
 
 # Checklist
+
+## Authentication
 - [x] Auth
+
+## Users
 - [x] Get Users
+
+## Messages
 - [x] Get Messages
 - [x] Send Messages
+- [x] Delete Messages
+- [x] Mark Messages Read/Unread
+
+## Files and Folders
 - [x] Get Course Folders
 - [x] Get Subfolders
 - [x] Get Files in Folder
@@ -51,15 +61,19 @@ for c in courses:
 - [x] Change File Metadata
 - [ ] Change File Content
 - [x] Download Files
+- [x] Mark files read
 - [ ] Move Folders/Files
 - [ ] Copy Folders/Files
-- [x] Mark files read
-- [x] Delete Messages
-- [ ] Plugin Support
-- [x] Mark Messages Read/Unread
+
+## Calendar
 - [ ] View Calendar
 - [ ] Download Calendar ics (rewrite)
 - [ ] Edit Calendar
+
+## Plugins
+- [ ] Plugin Support
+
+## Documentation
 - [ ] Write Documentation
 - [ ] Extend Examples
 
