@@ -38,7 +38,7 @@ for c in courses:
         print(c.title)
 ```
 
-# Checklist
+# Roadmap
 
 ## Authentication
 - [x] Auth
