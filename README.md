@@ -1,5 +1,5 @@
 [![PyPI Downloads](https://img.shields.io/pypi/dm/studipy.svg?label=PyPI%20downloads)](
-https://pypi.org/project/studipy/) [(https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)]
+https://pypi.org/project/studipy/)
 
 # studipy - StudIP python API
 StudIP Python API wrapper using StudIPs JSONAPI
