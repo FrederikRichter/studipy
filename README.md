@@ -49,11 +49,14 @@ for c in courses:
 - [x] Upload Files
 - [x] Delete Files
 - [x] Change File Metadata
+- [ ] Change File Content
 - [x] Download Files
+- [ ] Move Folders/Files
+- [ ] Copy Folders/Files
 - [x] Mark files read
 - [x] Delete Messages
 - [ ] Plugin Support
-- [ ] Mark Messages Read/Unread
+- [x] Mark Messages Read/Unread
 - [ ] View Calendar
 - [ ] Download Calendar ics (rewrite)
 - [ ] Edit Calendar
