@@ -46,8 +46,8 @@ for c in courses:
 
 ## Users
 - [x] Get Users
-- [ ] Get Self
-- [ ] Search for Users
+- [x] Get Self
+- [x] Search for Users
 
 ## Messages
 - [x] Get Messages

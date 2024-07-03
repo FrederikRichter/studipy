@@ -39,6 +39,7 @@ def run_tests():
 
     users = client.Users.get_users(limit=20)
     users[0].user_id
+    client.Users.get_users(search_q="test") 
     print("users test passed")
 
     folders = client.Files.get_folders(course=courses[0])
