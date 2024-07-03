@@ -24,7 +24,7 @@ def run_tests():
     print("courses test passed")
     
     messages = client.Messages.get_messages()
-    messages[0].message_id
+    assert messages[0] == client.Messages.view_message(message=messages[0])
     _test_message = Message (
                 subject="test subject",
                 body="test body",

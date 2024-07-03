@@ -23,7 +23,7 @@ class Course(BaseModel):
     course_id: str
 
 class Message(BaseModel):
-    subject: str
+    subject: Optional[str]
     message_id: Optional[str]
     sender_id: Optional[str]
     body: Optional[str]
