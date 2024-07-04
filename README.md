@@ -64,8 +64,10 @@ for c in courses:
 - [x] Change File Metadata
 - [x] Change File Content
 - [x] Download Files
+- [x] Create Folders
+- [x] Delete Folders
 - [x] Mark files read
-- [ ] Move Folders/Files
+- [x] Move Folders/Files
 - [ ] Copy Folders/Files
 
 ## Calendar
