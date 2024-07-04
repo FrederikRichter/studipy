@@ -37,10 +37,6 @@ class Messages:
         """returns bytes of file content, needs specific file id"""
         if recipients:
             recipient_ids = [r.user_id for r in recipients]
-
-        headers = {
-                'Content-Type': 'application/vnd.api+json',
-                }
        
         recipients_data = []
         for r in recipient_ids:
@@ -49,7 +45,7 @@ class Messages:
                 "id": r
                 })
 
-        data = {
+        payload = {
                 "data": {
                     "type": "messages",
                     "attributes": {
@@ -68,8 +64,7 @@ class Messages:
         response = browser.post(
                 url=self._api_url + "messages",
                 auth=self._auth,
-                data=json.dumps(data),
-                headers=headers
+                json=payload,
                 )
 
         return response

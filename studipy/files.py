@@ -1,5 +1,5 @@
 import studipy.browser as browser
-from studipy.types import Folder, File, Course, File_Metadata
+from studipy.types import Folder, File, Course, Metadata
 from studipy.helper import safe_get
 from typing import Optional
 import requests
@@ -106,6 +106,17 @@ class Files:
                 )
         return response
     
+    
+    def delete_folder(self, folder: Optional[Folder] = None, folder_id = None, expected_status_code=204) -> requests.Response:
+        """returns bytes of file content, needs specific file id"""
+        if folder:
+            folder_id = folder.folder_id
+
+        response = browser.delete(
+                url=self._api_url + "folders/" + folder_id, auth=self._auth, expected_status_code=expected_status_code
+                )
+        return response
+
     def change_metadata(self, metadata: Metadata, file: Optional[File] = None, file_id: Optional[str] = None, folder: Optional[Folder] =None, folder_id: Optional[str] = None):
         if file:
             file_id = file.file_id
@@ -126,7 +137,7 @@ class Files:
                             'terms-of-use': {
                                 'data': {
                                     'type': 'terms-of-use',
-                                    'id': metadata.license
+                                    'id': metadata.license.license_id
                                     }
                                 }
                             }}}
@@ -139,7 +150,7 @@ class Files:
         elif folder_id:
             payload = {
                     "data": {
-                        "type": "folder",
+                        "type": "folders",
                         "id": folder_id,
                         "attributes": {
                             "name": metadata.name,
@@ -149,7 +160,7 @@ class Files:
                             'terms-of-use': {
                                 'data': {
                                     'type': 'terms-of-use',
-                                    'id': metadata.license
+                                    'id': metadata.license.license_id
                                     }
                                 }
                             }}}
@@ -183,7 +194,7 @@ class Files:
         return response
 
 
-    def upload_file(self,  file_binary: bytes, folder: Optional[Folder] = None, folder_id: Optional[str] = None, metadata: Optional[File_Metadata] = None) -> str:
+    def upload_file(self,  file_binary: bytes, folder: Optional[Folder] = None, folder_id: Optional[str] = None, metadata: Optional[Metadata] = None) -> str:
         """uploads file with metadata to folder"""
         
         if folder:
@@ -208,5 +219,63 @@ class Files:
         else:
             return file_id
 
+    def create_folder(self,  location: Optional[Folder] = None, location_id: Optional[str] = None, metadata: Optional[Metadata] = None):
+        if location:
+            location_id = location.folder_id
+        
+        payload = {
+                "data": {
+                    "type": "folders",
+                    "attributes": {
+                        "name":"New Folder"
+                        }
+                    }
+                }
+        response = browser.post(
+                url = self._api_url + "folders/" + location_id + "/folders",
+                auth = self._auth,
+                json = payload,
+                expected_status_code = 201
+                )
 
-    def move_folder(self)
+        folder_id = response.headers["Location"].split("/")[-1]
+        if metadata:
+            # change metadata of file in second step
+            response = self.change_metadata(metadata=metadata, folder_id=folder_id)
+            return folder_id
+        else:
+            return folder_id
+
+
+    def move_folder(self, folder: Optional[Folder] = None, folder_id: Optional[str] = None, target_folder: Optional[Folder] = None, target_folder_id: Optional[str] = None) -> requests.Response:
+        if folder:
+            folder_id = folder.folder_id
+        if target_folder:
+            target_folder_id = target_folder.folder_id
+        
+        
+        payload = {
+                "data": {
+                    "type": "folders",
+                    "id": folder_id,
+                    "relationships": {
+                        "parent" :{
+                            "links":
+                            {
+                                "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
+                                },
+                            "data":
+                            {
+                                "type": "folders",
+                                "id" : str(target_folder_id)
+                                }
+                            }
+                        }
+                    }
+                }
+        response = browser.patch(
+                url = self._api_url + "folders/" + folder_id,
+                auth = self._auth,
+                json = payload
+                )
+        return response
