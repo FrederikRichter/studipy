@@ -85,7 +85,7 @@ def run_tests():
             description="Test description"
             )
     _move_id = client.Files.create_folder(location_id=_private_folder, metadata=_to_move_metadata)
-    client.Files.move_folder(folder_id=_move_id, target_folder_id=_root_id)
+    client.Files.move(folder_id=_move_id, target_folder_id=_root_id)
 
     # cleanup
     client.Files.delete_folder(folder_id=_root_id)

@@ -247,35 +247,66 @@ class Files:
             return folder_id
 
 
-    def move_folder(self, folder: Optional[Folder] = None, folder_id: Optional[str] = None, target_folder: Optional[Folder] = None, target_folder_id: Optional[str] = None) -> requests.Response:
+    def move(self, folder: Optional[Folder] = None, folder_id: Optional[str] = None, file: Optional[File] = None, file_id: Optional[str] = None, target_folder: Optional[Folder] = None, target_folder_id: Optional[str] = None) -> requests.Response:
         if folder:
             folder_id = folder.folder_id
+        if file:
+            file_id = file.file_id
         if target_folder:
             target_folder_id = target_folder.folder_id
         
-        
-        payload = {
-                "data": {
-                    "type": "folders",
-                    "id": folder_id,
-                    "relationships": {
-                        "parent" :{
-                            "links":
-                            {
-                                "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
-                                },
-                            "data":
-                            {
-                                "type": "folders",
-                                "id" : str(target_folder_id)
+        if folder_id:
+            payload = {
+                    "data": {
+                        "type": "folders",
+                        "id": folder_id,
+                        "relationships": {
+                            "parent" :{
+                                "links":
+                                {
+                                    "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
+                                    },
+                                "data":
+                                {
+                                    "type": "folders",
+                                    "id" : str(target_folder_id)
+                                    }
                                 }
                             }
                         }
                     }
-                }
-        response = browser.patch(
-                url = self._api_url + "folders/" + folder_id,
-                auth = self._auth,
-                json = payload
-                )
+            response = browser.patch(
+                    url = self._api_url + "folders/" + folder_id,
+                    auth = self._auth,
+                    json = payload
+                    )
+        elif file_id:
+            payload = {
+                    "data": {
+                        "type": "file-refs",
+                        "id": file_id,
+                        "relationships": {
+                            "parent" :{
+                                "links":
+                                {
+                                    "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
+                                    },
+                                "data":
+                                {
+                                    "type": "folders",
+                                    "id" : str(target_folder_id)
+                                    }
+                                }
+                            }
+                        }
+                    }
+            response = browser.patch(
+                    url = self._api_url + "file-refs/" + file_id,
+                    auth = self._auth,
+                    json = payload
+                    )
+        else:
+            raise KeyError("Neither file/id nor folder/id provided for move file/folder")
         return response
+
+    def copy_folder
