@@ -281,6 +281,13 @@ class Files:
                     json = payload
                     )
         elif file_id:
+            raise NotImplementedError("""
+                                      Even though this should work,
+                                      it is not yet implemented by studip.
+                                      Please only move folders.
+                                      To workaround copy file and delete original
+                                      ~Frederik"""
+                                      )
             payload = {
                     "data": {
                         "type": "file-refs",
@@ -309,4 +316,4 @@ class Files:
             raise KeyError("Neither file/id nor folder/id provided for move file/folder")
         return response
 
-    def copy_folder
+    # def copy_folder
