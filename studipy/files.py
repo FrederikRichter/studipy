@@ -3,7 +3,6 @@ from studipy.types import Folder, File, Course, Metadata
 from studipy.helper import safe_get
 from typing import Optional
 import requests
-import json
 
 class Files:
     def __init__(self, client):
@@ -281,37 +280,39 @@ class Files:
                     json = payload
                     )
         elif file_id:
-            raise NotImplementedError("""
-                                      Even though this should work,
-                                      it is not yet implemented by studip.
-                                      Please only move folders.
-                                      To workaround copy file and delete original
-                                      ~Frederik"""
-                                      )
-            payload = {
-                    "data": {
-                        "type": "file-refs",
-                        "id": file_id,
-                        "relationships": {
-                            "parent" :{
-                                "links":
-                                {
-                                    "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
-                                    },
-                                "data":
-                                {
-                                    "type": "folders",
-                                    "id" : str(target_folder_id)
+            try:
+                payload = {
+                        "data": {
+                            "type": "file-refs",
+                            "id": file_id,
+                            "relationships": {
+                                "parent" :{
+                                    "links":
+                                    {
+                                        "related" : "/jsonapi.php/v1/folders/" + str(target_folder_id)
+                                        },
+                                    "data":
+                                    {
+                                        "type": "folders",
+                                        "id" : str(target_folder_id)
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-            response = browser.patch(
-                    url = self._api_url + "file-refs/" + file_id,
-                    auth = self._auth,
-                    json = payload
-                    )
+                response = browser.patch(
+                        url = self._api_url + "file-refs/" + file_id,
+                        auth = self._auth,
+                        json = payload
+                        )
+            except requests.HTTPError:
+                raise NotImplementedError("""
+                                          Even though this should work,
+                                          it is not yet implemented by studip.
+                                          Please only move folders.
+                                          To workaround copy file and delete original
+                                          ~Frederik"""
+                                          )
         else:
             raise KeyError("Neither file/id nor folder/id provided for move file/folder")
         return response
