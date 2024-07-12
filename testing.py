@@ -24,7 +24,7 @@ def run_tests():
     courses = client.Courses.get_courses()
     courses[0].course_id
     print("courses test passed")
-    
+
     # Test for retrieving messages, viewing a message, sending, and deleting a message
     messages = client.Messages.get_messages()
     assert messages[0] == client.Messages.view_message(message=messages[0])
