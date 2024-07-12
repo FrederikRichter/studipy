@@ -13,15 +13,15 @@ def get(url, auth, params=None, expected_status_code=200) -> dict:
         url=url,
         expected=expected_status_code
     )
-    return json.loads(response.text)
+    return response.json()
 
-def patch(url, auth, params=None, data=None, headers=None, expected_status_code=200) -> requests.Response:
+def patch(url, auth, params=None, json=None, headers={"Content-Type": "application/vnd.api+json"}, expected_status_code=200) -> requests.Response:
     """Patches over API"""
     response = requests.patch(
         url=url,
         auth=auth,
         params=params,
-        data=data,
+        json=json,
         headers=headers,
     )
     check_status(
@@ -49,16 +49,15 @@ def delete(url, auth, params=None, data=None, headers=None, expected_status_code
     return response
 
 
-def post(url, auth, params=None, data=None, headers=None, expected_status_code=201) -> requests.Response:
+def post(url, auth, params=None, json=None, headers={"Content-Type": "application/vnd.api+json"}, expected_status_code=201) -> requests.Response:
     """Posts over API"""
     response = requests.post(
         url=url,
         auth=auth,
-        data=data,
+        json=json,
         params=params,
         headers=headers,
     )
-
     check_status(
         status_code=response.status_code,
         url=url,

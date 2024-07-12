@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
 
 class User(BaseModel):
@@ -6,6 +6,14 @@ class User(BaseModel):
     username: Optional[str]
     email: Optional[str]
     user_id: str
+
+class Membership(BaseModel):
+    user_id: Optional[str]
+    membership_id: Optional[str]
+    permission: Optional[str]
+    group: Optional[int]
+    label: Optional[str]
+    visible: Optional[str] # yes/no
 
 class Course(BaseModel):
     title: Optional[str]
@@ -15,7 +23,7 @@ class Course(BaseModel):
     course_id: str
 
 class Message(BaseModel):
-    subject: str
+    subject: Optional[str]
     message_id: Optional[str]
     sender_id: Optional[str]
     body: Optional[str]
@@ -35,7 +43,7 @@ class File(BaseModel):
     owner_name: Optional[str]
     owner_id: Optional[str]
 
-class File_Metadata(BaseModel):
+class Metadata(BaseModel):
     name: Optional[str]
     description: Optional[str]
     license: License

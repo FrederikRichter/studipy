@@ -38,25 +38,47 @@ for c in courses:
         print(c.title)
 ```
 
-# Checklist
-- [x] Auth
+# Roadmap
+
+## Authentication
+- [x] Basic (Username, Password)
+- [ ] Oauth
+
+## Users
 - [x] Get Users
+- [x] Get Self
+- [x] Search for Users
+
+## Messages
 - [x] Get Messages
 - [x] Send Messages
+- [x] Delete Messages
+- [x] Mark Messages Read/Unread
+
+## Files and Folders
 - [x] Get Course Folders
 - [x] Get Subfolders
 - [x] Get Files in Folder
 - [x] Upload Files
 - [x] Delete Files
 - [x] Change File Metadata
+- [x] Change File Content
 - [x] Download Files
+- [x] Create Folders
+- [x] Delete Folders
 - [x] Mark files read
-- [ ] Delete Messages
-- [ ] Plugin Support
-- [ ] Mark Messages Read/Unread
+- [x] Move Folders/Files
+- [ ] Copy Folders/Files
+
+## Calendar
 - [ ] View Calendar
 - [ ] Download Calendar ics (rewrite)
 - [ ] Edit Calendar
+
+## Plugins
+You will have to implement custom plugins yourself. They might have registered JSONAPI notes, good luck
+
+## Documentation
 - [ ] Write Documentation
 - [ ] Extend Examples
 
