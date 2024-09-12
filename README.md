@@ -68,7 +68,7 @@ for c in courses:
 - [x] Delete Folders
 - [x] Mark files read
 - [x] Move Folders/Files
-- [ ] Copy Folders/Files
+- [ ] Copy Folders/Files (WIP)
 
 ## Calendar
 - [ ] View Calendar
