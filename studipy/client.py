@@ -29,7 +29,7 @@ class Client:
         _tested_version = "6.0.alpha"
         if self.version != _tested_version:
             print(f"""
-                  WARNING: This library was tested on version {_tested_version} and does not match your version{self.version}.
+                  WARNING: This library was tested on version {_tested_version} and does not match your version {self.version}.
                   You might encounter Bugs that have been fixed in newer Versions of Studip.
                   Ask your Administrator to update the JSONAPI if it does not match the newest Version found on 
                   https://gitlab.studip.de/groups/studip/-/milestones?sort=name_desc
