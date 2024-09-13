@@ -318,6 +318,11 @@ class Files:
         return response
 
     def copy(self, folder: Optional[Folder] = None, folder_id: Optional[str] = None, file: Optional[File] = None, file_id: Optional[str] = None, target_folder: Optional[Folder] = None, target_folder_id: Optional[str] = None) -> requests.Response:
+        raise NotImplementedError("""
+        Since my university does not have the newest
+        studip version i cannot test this. Might fix this once i get proper
+        access to a testing environment
+        """)
         if folder:
             folder_id = folder.folder_id
         if file:
@@ -326,10 +331,10 @@ class Files:
             target_folder_id = target_folder.folder_id
 
         if folder_id:
-            file_dict = {'destination': folder_id}
+            file_dict = {'destination': target_folder_id}
 
             response = browser.post(
-                    url = self._api_url + "folders/" + target_folder_id + "/copy",
+                    url = self._api_url + "folders/" + folder_id + "/copy",
                     files = file_dict,
                     auth = self._auth,
                     expected_status_code = 201
