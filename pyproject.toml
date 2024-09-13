@@ -11,6 +11,7 @@ python = "^3.12"
 requests = "^2.31.0"
 pydantic = "^2.7.4"
 python-dotenv = "^1.0.1"
+pip = "^24.2"
 
 
 [build-system]

@@ -84,9 +84,13 @@ def run_tests():
             license=_test_license,
             description="Test description"
             )
+
     _move_id = client.Files.create_folder(location_id=_private_folder, metadata=_to_move_metadata)
     client.Files.move(folder_id=_move_id, target_folder_id=_root_id)
 
+    # test copy folder
+    re = client.copy(folder_id = _move_id, target_folder_id = _root_id)
+    print(re.text)
     # cleanup
     client.Files.delete_folder(folder_id=_root_id)
     print("files test passed")
