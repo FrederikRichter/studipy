@@ -70,9 +70,10 @@ for c in courses:
 - [x] Move Folders/Files
 - [ ] Copy Folders/Files (WIP)
 
-## Calendar
+## Calendar/Schedule
 - [ ] View Calendar
-- [ ] Download Calendar ics (rewrite)
+- [x] Download Calendar ics
+- [x] Get Schedule for current Semester
 - [ ] Edit Calendar
 
 ## Plugins

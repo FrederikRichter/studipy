@@ -1,6 +1,7 @@
 import studipy.browser as browser
 from studipy.courses import Courses
 from studipy.messages import Messages
+from studipy.calendar import Calendar
 from studipy.files import Files
 from studipy.constants import Constants
 from studipy.users import Users
@@ -48,3 +49,4 @@ class Client:
         self.Files = Files(client=self)
         self.Constants = Constants(client=self)
         self.Users = Users(client=self)
+        self.Calendar = Calendar(client=self)

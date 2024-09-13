@@ -322,6 +322,7 @@ class Files:
         Since my university does not have the newest
         studip version i cannot test this. Might fix this once i get proper
         access to a testing environment
+        ~Frederik
         """)
         if folder:
             folder_id = folder.folder_id
@@ -339,3 +340,4 @@ class Files:
                     auth = self._auth,
                     expected_status_code = 201
                     )
+

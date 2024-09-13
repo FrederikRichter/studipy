@@ -91,10 +91,16 @@ def run_tests():
     # test copy folder (stale, see exception in files.py)
     # re = client.Files.copy(folder_id=_move_id, target_folder_id=_root_id)
     # print(re.text)
+    
+    # download calendar ics
+    client.Calendar.get_calendar() 
+    
+    # retrieve schedule
+    client.Calendar.get_schedule()
 
     # cleanup
     client.Files.delete_folder(folder_id=_root_id)
     print("files test passed")
-
+    
 # Run all tests
 run_tests()
