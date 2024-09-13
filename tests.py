@@ -59,7 +59,7 @@ def run_tests():
     
     # Test for uploading file, changing metadata and deleting it
     _private_folder = "0d3f60fa710b7b9d23638b46b83de307"
-    _test_file = open("testing.py", "rb")
+    _test_file = open("tests.py", "rb")
     _test_license = LICENSES[0]
     _test_metadata = Metadata(
                 name="Testing",
@@ -84,12 +84,23 @@ def run_tests():
             license=_test_license,
             description="Test description"
             )
+
     _move_id = client.Files.create_folder(location_id=_private_folder, metadata=_to_move_metadata)
     client.Files.move(folder_id=_move_id, target_folder_id=_root_id)
+
+    # test copy folder (stale, see exception in files.py)
+    # re = client.Files.copy(folder_id=_move_id, target_folder_id=_root_id)
+    # print(re.text)
+    
+    # download calendar ics
+    client.Calendar.get_calendar() 
+    
+    # retrieve schedule
+    client.Calendar.get_schedule()
 
     # cleanup
     client.Files.delete_folder(folder_id=_root_id)
     print("files test passed")
-
+    
 # Run all tests
 run_tests()

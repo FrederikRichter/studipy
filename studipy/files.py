@@ -317,4 +317,27 @@ class Files:
             raise KeyError("Neither file/id nor folder/id provided for move file/folder")
         return response
 
-    # def copy_folder
+    def copy(self, folder: Optional[Folder] = None, folder_id: Optional[str] = None, file: Optional[File] = None, file_id: Optional[str] = None, target_folder: Optional[Folder] = None, target_folder_id: Optional[str] = None) -> requests.Response:
+        raise NotImplementedError("""
+        Since my university does not have the newest
+        studip version i cannot test this. Might fix this once i get proper
+        access to a testing environment
+        ~Frederik
+        """)
+        if folder:
+            folder_id = folder.folder_id
+        if file:
+            file_id = file.file_id
+        if target_folder:
+            target_folder_id = target_folder.folder_id
+
+        if folder_id:
+            file_dict = {'destination': target_folder_id}
+
+            response = browser.post(
+                    url = self._api_url + "folders/" + folder_id + "/copy",
+                    files = file_dict,
+                    auth = self._auth,
+                    expected_status_code = 201
+                    )
+

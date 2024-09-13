@@ -49,7 +49,7 @@ def delete(url, auth, params=None, data=None, headers=None, expected_status_code
     return response
 
 
-def post(url, auth, params=None, json=None, headers={"Content-Type": "application/vnd.api+json"}, expected_status_code=201) -> requests.Response:
+def post(url, auth, params=None, json=None, headers={"Content-Type": "application/vnd.api+json"}, expected_status_code=201, files=None) -> requests.Response:
     """Posts over API"""
     response = requests.post(
         url=url,
@@ -57,6 +57,7 @@ def post(url, auth, params=None, json=None, headers={"Content-Type": "applicatio
         json=json,
         params=params,
         headers=headers,
+        files=files,
     )
     check_status(
         status_code=response.status_code,

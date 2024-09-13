@@ -68,15 +68,16 @@ for c in courses:
 - [x] Delete Folders
 - [x] Mark files read
 - [x] Move Folders/Files
-- [ ] Copy Folders/Files
+- [ ] Copy Folders/Files (STALE)
 
-## Calendar
+## Calendar/Schedule
 - [ ] View Calendar
-- [ ] Download Calendar ics (rewrite)
+- [x] Download Calendar ics
+- [x] Get Schedule for current Semester
 - [ ] Edit Calendar
 
 ## Plugins
-You will have to implement custom plugins yourself. They might have registered JSONAPI notes, good luck
+You will have to implement custom plugins yourself. They might have registered JSONAPI routes, good luck
 
 ## Documentation
 - [ ] Write Documentation

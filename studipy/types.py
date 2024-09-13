@@ -22,6 +22,18 @@ class Course(BaseModel):
     location: Optional[str]
     course_id: str
 
+class Schedule_Entry(BaseModel):
+    entry_id: str
+    description: Optional[str]
+    title: Optional[str]
+    start: Optional[str]
+    end: Optional[str]
+    frequency: Optional[str]
+    related_course_id: Optional[str]
+
+class Schedule(BaseModel):
+    entries: list[Schedule_Entry]
+
 class Message(BaseModel):
     subject: Optional[str]
     message_id: Optional[str]
